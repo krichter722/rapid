@@ -78,8 +78,8 @@ def main():
 		""" Returns the next positional argument or
 		displays an error and exits if there are no arguments left."""
 		if len(args) < 1:
-			print 'Not enough arguments to operation.'
-			print
+			print('Not enough arguments to operation.')
+			print()
 			usage()
 		return args.pop(0)
 
@@ -94,10 +94,10 @@ def main():
 		# Only the left side is expanded by git-archive, so when the left side
 		# and the right side differ we are running a real release.
 		if '$Format:%h%d$'[1:-1] == 'Format:%h%d':
-			print 'No version information available.',
-			print 'Are you using a development version?'
+			print('No version information available.')
+			print('Are you using a development version?')
 		else:
-			print 'Exported from git commit: $Format:%h%d$'
+			print('Exported from git commit: $Format:%h%d$')
 		sys.exit(0)
 
 	if len(args) < 1:
@@ -118,8 +118,8 @@ def main():
 	elif os.name == 'posix':
 		init(os.path.expanduser('~/.spring'), ui)
 	else:
-		print 'No data directory specified. Specify one using either --datadir or --unitsync.'
-		print
+		print('No data directory specified. Specify one using either --datadir or --unitsync.')
+		print()
 		usage()
 
 	# Loop conditions are at the end.
@@ -144,7 +144,7 @@ def main():
 		if len(args) == 0:
 			break
 		else:
-			print '---'
+			print('---')
 
 	# Commands which have a fixed number of arguments.
 	if verb == 'list-packages':
@@ -166,6 +166,6 @@ def main():
 	elif verb == 'make-sdd':
 		make_sdd(req_arg(), req_arg())
 	elif not handled:
-		print 'Unknown operation: ' + verb
-		print
+		print('Unknown operation: ' + verb)
+		print()
 		usage()

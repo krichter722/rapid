@@ -35,8 +35,8 @@ class ReloadThread(QtCore.QThread):
 		elif os.name == 'posix':
 			main.init(os.path.expanduser('~/.spring'), ui)
 		else:
-			print 'No data directory specified. Specify one using either --datadir or --unitsync.'
-			print
+			print('No data directory specified. Specify one using either --datadir or --unitsync.')
+			print()
 		installed,available = split_on_condition( main.rapid.packages, lambda p: p.installed )
 		self.mainWidget.reload( installed,available )
 		#progress.destroy()
@@ -70,11 +70,11 @@ class DownloadThread(QtCore.QThread):
 		for d in p.dependencies:
 			self.install_single(d, True)
 		if not p.installed:
-			print ['Installing: ', 'Installing dependency: '][int(dep)] + p.name
+			print(['Installing: ', 'Installing dependency: '][int(dep)] + p.name)
 			p.install(self)
-			print
+			print()
 		elif not dep:
-			print 'Already installed: ' + p.name
+			print('Already installed: ' + p.name)
 
 	def __call__(self, value ):
 		self.emit( QtCore.SIGNAL("incrementValue"), value )
@@ -154,7 +154,7 @@ class InstalledRapidListWidget(RapidListWidgetBase):
 			QtGui.QMessageBox.information( self.parent, "Done","%s was removed"%p.name )
 			self.sourceModel.reload()
 		except Exception, e:
-			print e
+			print(e)
 			QtGui.QMessageBox.critical( self.parent, "Error", "Removing %s failed\n%s"%(p.name,str(e)) )
 		
 
@@ -168,7 +168,7 @@ class AvailableRapidListWidget(RapidListWidgetBase):
 	def doubleClicked(self,modelIndex):
 		item = self.sourceModel.itemFromIndex( self.proxyModel.mapToSource( modelIndex ) )
 		tag = str(item.text())
-		print 'downloading ',tag
+		print('downloading ',tag)
 		self.dl = DownloadDialog(self.parent,tag)
 		self.dl.show()
 		self.connect( self.dl.dt, QtCore.SIGNAL("downloadComplete"), self.parent.reload, QtCore.Qt.QueuedConnection )

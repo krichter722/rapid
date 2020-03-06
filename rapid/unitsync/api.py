@@ -49,9 +49,9 @@ def generate_locations():
 			if type == _winreg.REG_SZ:
 				yield value
 			else:
-				print 'key of unknown type'
+				print('key of unknown type')
 		except WindowsError as e:
-			print "Registry key not found: " + str(e)
+			print("Registry key not found: " + str(e))
 		program_files = os.getenv('ProgramFiles')
 		if program_files:
 			for filename in filenames:
@@ -86,13 +86,13 @@ def get_writable_data_directory():
 def test():
 	# Quick test.
 	for location in generate_locations():
-		print location
+		print(location)
 	unitsync = locate_unitsync()
 	# This is not available in older versions of unitsync.
-	print 'Has GetMapDescription?', unitsync.has('GetMapDescription')
+	print('Has GetMapDescription?', unitsync.has('GetMapDescription'))
 	# Test main interface.
 	data_directory = get_writable_data_directory()
-	print '===>', data_directory, '<==='
+	print('===>', data_directory, '<===')
 
 
 if __name__ == '__main__':
